@@ -17,8 +17,9 @@ class MenuAdapter(private val data: List<Any>) : RecyclerView.Adapter<RecyclerVi
 
     private fun getViewHolder(viewType: Int, view: View): RecyclerView.ViewHolder {
         return when (viewType){
-            ITEM_MENU -> MenuHeaderHolder(view)
-            else -> MenuItemHolder(view)
+            ITEM_HEADER -> MenuHeaderHolder(view)
+            ITEM_MENU -> MenuItemHolder(view)
+            else -> throw IllegalArgumentException("Undefined viewtype")
         }
     }
 
@@ -42,8 +43,9 @@ class MenuAdapter(private val data: List<Any>) : RecyclerView.Adapter<RecyclerVi
 
     private fun getLayout(type : Int): Int {
         return when(type) {
-            ITEM_MENU -> R.layout.item_header
-            else -> R.layout.item_menu
+            ITEM_HEADER -> R.layout.item_header
+            ITEM_MENU -> R.layout.item_menu
+            else -> throw IllegalArgumentException("Undefined viewtype")
         }
     }
 
